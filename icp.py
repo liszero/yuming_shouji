@@ -42,7 +42,7 @@ def chinazApi(domain):
     # 获取域名的公司名字
     url = r'http://icp.chinaz.com/{}'.format(domain)
     try:
-        res = requests.get(url=url, headers=headers,verify=False,proxies=proxies)
+        res = requests.get(url=url, headers=headers,verify=False)
     except Exception as e:
         print('[error] request : {}\n{}'.format(url, e.args))
         return []
@@ -69,7 +69,7 @@ def chinazApi(domain):
     url = 'http://icp.chinaz.com/Home/PageData'
     data = 'pageNo=1&pageSize=20&Kw=' + companyNameUrlEncode
     try:
-        res = requests.post(url=url, headers=headers, proxies=proxies,data=data, allow_redirects=False, verify=False)
+        res = requests.post(url=url, headers=headers,data=data, allow_redirects=False, verify=False)
     except Exception as e:
         print('[error] request : {}\n{}'.format(url, e.args))
         return []
