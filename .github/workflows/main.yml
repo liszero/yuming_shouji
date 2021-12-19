@@ -1,0 +1,45 @@
+name: Python package
+
+on:
+
+    workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: install ubuntu core 
+      run: |
+        sudo apt-get update
+        sudo apt install git --fix-missing -y
+        sudo apt install vim -y
+        sudo apt-get install libpcap-dev -y
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+    - name: install icp
+      run: |
+        curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/icp.py
+        python -m pip install aiohttp
+        curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/1.txt
+
+    - name: icpcheck run
+      run: |
+        python springboot_check.py -f 1.txt
+        
+    - name: save_result
+      uses: actions/upload-artifact@v1
+      with:
+          name: result
+          path: /home/runner/work/yuming_shouji/yuming_shouji/result.txt
