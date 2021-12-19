@@ -37,7 +37,7 @@ jobs:
 
     - name: icpcheck run
       run: |
-        python springboot_check.py -f 1.txt
+        python icp.py -f 1.txt
         
     - name: save_result
       uses: actions/upload-artifact@v1
