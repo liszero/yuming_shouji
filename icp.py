@@ -5,6 +5,7 @@ import json
 import math
 from termcolor import cprint
 import time
+import argparse
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:46.0) Gecko/20100101 Firefox/46.0'}
 
@@ -112,14 +113,19 @@ def chinazApi(domain):
                     continue
                 w.write(newdomain[1]+"\n")
     
-    
-with open('1.txt','rt',encoding="utf-8",errors="ignore") as f:
-    domains = f.readlines()
-    num =0
-    for domain in domains:
-        num += 1
-        print("<><><><><><><><><>第"+str(num)+"页"+"<><><><><><><><><>")
-        chinazApi(domain.strip())
-        time.sleep(5)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file", dest='file', help="目标文件")
 
-print("end 排除了这么多家"+str(len(companyName_list)))
+    args = parser.parse_args()
+  
+    with open(args.file,'rt',encoding="utf-8",errors="ignore") as f:
+        domains = f.readlines()
+        num =0
+        for domain in domains:
+            num += 1
+            print("<><><><><><><><><>第"+str(num)+"页"+"<><><><><><><><><>")
+            chinazApi(domain.strip())
+            time.sleep(5)
+
+    print("end 排除了这么多家"+str(len(companyName_list)))
