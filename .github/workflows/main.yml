@@ -31,7 +31,8 @@ jobs:
     - name: install icp
       run: |
         curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/icp.py
-        python -m pip install aiohttp
+        python -m pip install requests
+        python -m pip install termcolor
         curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/1.txt
 
     - name: icpcheck run
