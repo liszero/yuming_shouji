@@ -107,7 +107,7 @@ def chinazApi(domain):
         # for _ in chinazNewDomains:
         #     print(_)
         if len(chinazNewDomains) > 0:
-            with open('laravel_result.txt','a+',encoding="utf-8",errors="ignore") as w:
+            with open('result.txt','a+',encoding="utf-8",errors="ignore") as w:
                 for newdomain in chinazNewDomains:
                     if check_contain_chinese(newdomain[1]):
                         continue
