@@ -33,11 +33,11 @@ jobs:
         curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/icp.py
         python -m pip install requests
         python -m pip install termcolor
-        curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/24.txt
+        curl -O https://raw.githubusercontent.com/lisa-hue/yuming_shouji/main/34.txt
 
     - name: icpcheck run
       run: |
-        python icp.py -f 24.txt
+        python icp.py -f 34.txt
         
     - name: save_result
       uses: actions/upload-artifact@v1
